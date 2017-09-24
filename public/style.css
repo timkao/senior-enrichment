@@ -1,0 +1,58 @@
+body {
+  background-color: #D9C293;
+  margin-top: 1em
+}
+
+img {
+  width: 20em;
+  height: 20em;
+  margin-top: 1em
+}
+
+.panel-default {
+  margin-top: 1em;
+}
+
+.glyphicon-plus {
+  margin-top: 0.5em;
+  font-size: 3em;
+  margin-left: -1em;
+}
+
+.glyphicon-trash {
+  font-size: 1em
+}
+
+
+.col-lg-7 .row {
+  margin-right: 0em
+}
+
+#add-campus {
+  margin-left: -3.5em;
+  font-size: 0.8em
+}
+
+#add-student {
+  margin-left: 0;
+  font-size: 0.8em
+}
+
+#to-add-student {
+  margin-left: 0
+}
+
+#student-list {
+  margin-top: 1em;
+  border-bottom: 0.1em solid #4D3D36;
+}
+
+.whole-student-list {
+  background-color: #DED9D9;
+  margin-top: 1em;
+  border-radius: 1em
+}
+
+/* #student-list .student-list-item {
+  border-bottom: 0.1em solid #4D3D36;
+} */
