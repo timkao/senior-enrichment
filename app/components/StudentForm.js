@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import store from '../store'
 import { newStudentEntry, newEmailEntry, newCampusId, fetchCampuses, addStudent, inputError, updateStudent } from '../reducers'
-import axios from 'axios'
 
 export default class StudentForm extends Component {
 
@@ -13,12 +12,7 @@ export default class StudentForm extends Component {
   }
 
   componentDidMount() {
-    const thunk = fetchCampuses()
-    store.dispatch(thunk)
     store.dispatch(inputError(false))
-    // store.dispatch(newEmailEntry(''))
-    // store.dispatch(newStudentEntry(''))
-    // store.dispatch(newCampusId(0))
     this.unsubscribe = store.subscribe(() => {
       this.setState(store.getState())
     })
@@ -32,32 +26,14 @@ export default class StudentForm extends Component {
     evt.preventDefault()
     const name = evt.target.name.value
     const email = this.state.newEmailEntry
-    const campusId = Number(evt.target.campusId.value)
-    let messageData;
-
-    if (campusId !== 0) {
-      messageData = {
-        name,
-        email,
-        campusId
-      }
-    }
-    else {
-      messageData = {
-        name,
-        email
-      }
-    }
+    let campusId = Number(evt.target.campusId.value)
+    campusId = campusId === 0 ? null : campusId
+    const messageData = {name, email, campusId}
 
     if (this.props.studentDefault) {
       const studentId = this.props.studentDefault.match.params.studentId
       const thunk = updateStudent(studentId, {email, campusId})
       store.dispatch(thunk)
-      // axios.put(`/api/student/${studentId}`, {email, campusId})
-      // .then( res => res.data)
-      // .then( result => {
-      //   console.log(result)
-      // })
     }
     else {
       const thunk = addStudent(messageData)

@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
 import store from '../store'
-import { deleteStudent, newEmailEntry, newStudentEntry, newCampusId, inputError } from '../reducers'
+import {} from '../reducers'
 import { Link } from 'react-router-dom'
 
 
-export default class Student extends Component {
+export default class SingleStudent extends Component {
 
   constructor() {
     super()
     this.state = store.getState()
-    this.handleDelete = this.handleDelete.bind(this)
-    this.handleEdit = this.handleEdit.bind(this)
   }
 
-  handleDelete(evt) {
-    const thunk = deleteStudent(this.props.student.id)
-    store.dispatch(thunk)
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(() => {
+      this.setState(store.getState())
+    })
   }
 
-  handleEdit(evt) {
-    store.dispatch(newEmailEntry(''))
-    store.dispatch(newStudentEntry(''))
-    store.dispatch(newCampusId(0))
-    store.dispatch(inputError(false))
+  componentWillUnmount() {
+    this.unsubscribe()
   }
 
   render() {

@@ -20,16 +20,20 @@ img {
 }
 
 .glyphicon-trash {
-  font-size: 1em
+  font-size: 0.8em
+}
+
+.glyphicon-trash:hover {
+  cursor: pointer
 }
 
 .glyphicon-pencil {
-  font-size: 1em
+  font-size: 0.8em
 }
 
-/* .glyphicon-pencil:hover {
-  cursor: pointer
-} */
+.glyphicon-eye-open {
+  font-size: 0.8em
+}
 
 .col-lg-7 .row {
   margin-right: 0em

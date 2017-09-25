@@ -14,8 +14,8 @@ Campus.hasMany(Student)
 
 const seed = function() {
 	Promise.all([
-		Student.create({name: 'Tim', email: 'tim.kao@iese.net'}),
-		Student.create({name: 'Peggy', email: 'peggy.ho@iese.net'}),
+		Student.create({name: 'Tim', email: 'tim.kao@ies.net'}),
+		Student.create({name: 'Peggy', email: 'peggy@hotmail.net'}),
 		Student.create({name: 'John', email: 'john.lee@nyc.net'}),
 		Student.create({name: 'Piper', email: 'piper.huang@taipei.com'}),
 		Student.create({name: 'Elyisa', email: 'elyisa.chang@iphone.com'}),

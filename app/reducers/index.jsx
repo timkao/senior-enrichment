@@ -30,7 +30,6 @@ export const updateStudentFromServer = function (student) {
   }
 }
 
-
 export const addStudentToServer = function (student) {
   return {
     type: ADD_STUDENT_TO_SERVER,
@@ -88,29 +87,6 @@ export const deleteStudentFromServer = function (id) {
 }
 
 
-export const updateStudent = function (id, messageData) {
-  // if (messageData.campusId === 0) {
-  //   console.log('---------------')
-  //   messageData = {email: messageData.email, campusId: undefined}
-  //   console.log(messageData)
-  // }
-  return function (dispatch) {
-    axios.put(`/api/student/${id}`, messageData)
-      .then(res => res.data)
-      .then(student => {
-        if (student === 'wrong') {
-          dispatch(inputError(true))
-        }
-        return axios.get('/api/students')
-      })
-      .then(res => res.data)
-      .then(students => {
-        const action = getStudentsFromServer(students)
-        dispatch(action)
-      })
-  }
-}
-
 export const deleteStudent = function (id) {
   return function (dispatch) {
     axios.delete(`/api/student/${id}`)
@@ -121,31 +97,6 @@ export const deleteStudent = function (id) {
   }
 }
 
-export const addStudent = function (messageData) {
-  return function (dispatch) {
-    axios.post('/api/student', messageData)
-      .then(res => res.data)
-      .then(student => {
-        if (student !== 'wrong') {
-          const action = addStudentToServer(student)
-          dispatch(action)
-          dispatch(newStudentEntry(''))
-          dispatch(newEmailEntry(''))
-          dispatch(newCampusId(0))
-          dispatch(inputError(false))
-        }
-        else {
-          dispatch(inputError(true))
-        }
-        return axios.get('/api/students')
-      })
-      .then(res => res.data)
-      .then(students => {
-        const action = getStudentsFromServer(students)
-        dispatch(action)
-      })
-  }
-}
 
 export const fetchStudents = function () {
   return function (dispatch) {
@@ -212,6 +163,40 @@ export const deleteCampus = function (id) {
   }
 }
 
+export const addStudent = function (messageData) {
+  return function (dispatch) {
+    axios.post('/api/student', messageData)
+      .then(res => res.data)
+      .then(student => {
+        if (student !== 'wrong') {
+          const action = addStudentToServer(student)
+          dispatch(action)
+          dispatch(newStudentEntry(''))
+          dispatch(newEmailEntry(''))
+          dispatch(newCampusId(0))
+          dispatch(inputError(false))
+        }
+        else {
+          dispatch(inputError(true))
+        }
+        dispatch(fetchStudents())
+        dispatch(fetchCampuses())
+      })
+  }
+}
+
+export const updateStudent = function (id, messageData) {
+  return function (dispatch) {
+    axios.put(`/api/student/${id}`, messageData)
+      .then(res => res.data)
+      .then(student => {
+        if (student === 'wrong') {
+          dispatch(inputError(true))
+        }
+        dispatch(fetchStudents())
+      })
+  }
+}
 
 // Reducers
 const campusesReducer = function (state = [], action) {

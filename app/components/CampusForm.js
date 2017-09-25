@@ -26,6 +26,7 @@ export default class CampusForm extends Component {
     evt.preventDefault()
     const thunk = createCampus({name: evt.target.name.value})
     store.dispatch(thunk)
+    store.dispatch(newCampusEntry(''))
   }
 
   handleChange(evt) {

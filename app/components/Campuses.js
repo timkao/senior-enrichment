@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import store from '../store'
 import { fetchCampuses, deleteCampus, inputError } from '../reducers'
 import { Route, Link } from 'react-router-dom'
-import CampusStudent from './CampusStudent'
+import SingleCampus from './SingleCampus'
 import CampusForm from './CampusForm'
 import StudentForm from './StudentForm'
 
@@ -18,7 +18,6 @@ export default class Campuses extends Component {
   componentDidMount() {
     const thunk = fetchCampuses()
     store.dispatch(thunk)
-
     this.unsubscribe = store.subscribe(() => {
       this.setState(store.getState())
     })
@@ -53,7 +52,7 @@ export default class Campuses extends Component {
                       <Link to={`/campuses/addStudent/${campus.id}`}>
                         <div onClick={handleClick} className="col-lg-6 text-center btn btn-default">Join Campus</div>
                       </Link>
-                      <Link to={'/campuses'}>
+                      <Link to={'/campuses/addCampus'}>
                         <div onClick={() => { handleDelete(campus.id) }} className="col-lg-6 text-center btn btn-default">Delt Campus</div>
                       </Link>
                     </div>
@@ -65,8 +64,8 @@ export default class Campuses extends Component {
         </div>
         <div className="col-lg-1"><Link to="/campuses/addCampus"> <i className="glyphicon glyphicon-plus btn"></i> </Link><p id="add-campus">Add Campus</p></div>
         <div className="col-lg-4">
-          <Route exact path="/campuses/campus/:campusId" component={CampusStudent} />
-          <Route path="/campuses/addCampus" component={CampusForm} />
+          <Route excat path="/campuses/Addcampus" component={CampusForm} />
+          <Route exact path="/campuses/campus/:campusId" component={SingleCampus} />
           <Route path="/campuses/addStudent/:campusId" render={(props) => <StudentForm info={props} />} />
         </div>
       </div>
