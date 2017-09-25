@@ -3,7 +3,11 @@ const Sequelize = require('sequelize')
 
 const Student = db.define('student', {
   name: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   email: {
     type: Sequelize.STRING,

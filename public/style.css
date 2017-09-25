@@ -4,8 +4,8 @@ body {
 }
 
 img {
-  width: 20em;
-  height: 20em;
+  width: 21em;
+  height: 21em;
   margin-top: 1em
 }
 
@@ -23,6 +23,13 @@ img {
   font-size: 1em
 }
 
+.glyphicon-pencil {
+  font-size: 1em
+}
+
+/* .glyphicon-pencil:hover {
+  cursor: pointer
+} */
 
 .col-lg-7 .row {
   margin-right: 0em
@@ -53,6 +60,6 @@ img {
   border-radius: 1em
 }
 
-/* #student-list .student-list-item {
-  border-bottom: 0.1em solid #4D3D36;
-} */
+.btn-default {
+  margin-top: 0.3em
+}

@@ -27,7 +27,7 @@ export default class CampusStudent extends Component {
         <div className="panel panel-heading">{campus && campus.name} Campus</div>
         <div className="panle panel-body">
           {
-            campus.students && campus.students.map( student => {
+            campus && campus.students && campus.students.map( student => {
               return (
                 <li className="lead" key={student.id}>{student.name}</li>
               )

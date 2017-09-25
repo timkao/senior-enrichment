@@ -26,6 +26,14 @@ api.post('/campuses', (req, res) => {
 	})
 })
 
+
+api.delete('/campus/:id', (req, res, next) => {
+	const id = Number(req.params.id)
+	Campus.destroy({ where: { id } })
+	.then(() => res.status(204).end())
+	.catch(next);
+})
+
 api.get('/students', (req, res) => {
 	Student.findAll({
 		order: ['id'],
@@ -42,5 +50,38 @@ api.delete('/student/:id', (req, res, next) => {
 	.then(() => res.status(204).end())
 	.catch(next);
 })
+
+api.put('/student/:studentId', (req, res, next) => {
+	const id = Number(req.params.studentId)
+	Student.findById(id)
+	.then( student => {
+		if (req.body.campusId === 0) {
+			student.campusId = null
+		}
+		else {
+			student.campusId = req.body.campusId
+		}
+		student.email = req.body.email
+		return student.save()
+	})
+	.then( updatedStudent => {
+		res.send(updatedStudent)
+	})
+	.catch(() => {
+		res.send('wrong')
+	})
+
+})
+
+api.post('/student', (req, res, next) => {
+	Student.create(req.body)
+	.then( student => {
+		res.send(student)
+	})
+	.catch(() => {
+		res.send('wrong')
+	})
+})
+
 
 module.exports = api

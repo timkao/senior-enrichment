@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import store from '../store'
 import { Route, Link } from 'react-router-dom'
-import { fetchStudents } from '../reducers'
+import { fetchStudents, newEmailEntry, newStudentEntry, newCampusId, inputError } from '../reducers'
 import Student from './Student'
+import StudentForm from './StudentForm'
 
 export default class Students extends Component {
 
   constructor() {
     super()
     this.state = store.getState()
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
@@ -19,13 +21,20 @@ export default class Students extends Component {
     })
   }
 
+  handleClick(evt) {
+    store.dispatch(newCampusId(0))
+    store.dispatch(newEmailEntry(''))
+    store.dispatch(newStudentEntry(''))
+    store.dispatch(inputError(false))
+  }
+
   componentWillUnmount() {
     this.unsubscribe()
   }
 
   render() {
     const { students } = this.state
-    console.log(students)
+    const { handleClick } = this
     return (
       <div className="row">
         <div className="col-lg-7 whole-student-list">
@@ -39,15 +48,20 @@ export default class Students extends Component {
           {
             students && students.map(student => {
               return (
-                <Student student={student} />
+                <div key={student.id}>
+                  <Student student={student} />
+                </div>
               )
             })
           }
 
         </div>
-        <div className="col-lg-1"><Link to="/students/addStudent"> <i id="to-add-student" className="glyphicon glyphicon-plus btn"></i> </Link><p id="add-student">Add Student</p></div>
+        <div className="col-lg-1"><Link to="/students/addStudent"> <i id="to-add-student" onClick={handleClick} className="glyphicon glyphicon-plus btn"></i> </Link><p id="add-student">Add Student</p>
+        </div>
+
         <div className="col-lg-4">
-          {/* <Route path="/campuses/addStudent" component={StudentForm} /> */}
+          <Route path="/students/addStudent" component={StudentForm} />
+          <Route path="/students/editStudent/:studentId" render={(props) => <StudentForm studentDefault={props} />} />
         </div>
       </div>
     )

@@ -35,7 +35,7 @@ export default class CampusForm extends Component {
 
   render() {
     const { handleSubmit, handleChange } = this
-    const { newCampusEntry } = this.state
+    const campusEntry = this.state.newCampusEntry
 
     return (
       <div className="panel panel-default">
@@ -44,7 +44,7 @@ export default class CampusForm extends Component {
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Name</label>
-              <input onChange={handleChange} name="name" className="form-control" value={newCampusEntry} />
+              <input onChange={handleChange} name="name" className="form-control" value={campusEntry} />
             </div>
             <div className="form-group">
               <button disabled={false} className="btn btn-primary btn-block">Save</button>
