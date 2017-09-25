@@ -3,13 +3,18 @@ body {
   margin-top: 1em
 }
 
-img {
+#campus-list img {
   width: 21em;
   height: 21em;
   margin-top: 1em
 }
 
+
 .panel-default {
+  margin-top: 1em;
+}
+
+#student-profile {
   margin-top: 1em;
 }
 
@@ -66,4 +71,9 @@ img {
 
 .btn-default {
   margin-top: 0.3em
+}
+
+#campus-image {
+  width: 18.5em;
+  height: 18.5em
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import store from '../store'
-import {} from '../reducers'
 import { Link } from 'react-router-dom'
 
 
@@ -22,19 +21,25 @@ export default class SingleStudent extends Component {
   }
 
   render() {
-    const { student } = this.props
-    const { handleDelete, handleEdit } = this
+    const studentId = Number(this.props.match.params.id)
+    const { students } = this.state
+    const student = students.filter(_student => _student.id === studentId)[0]
+    console.log(student)
 
     return (
-      <div className="row lead">
-        <div className="col-lg-1">{student.id}</div>
-        <div className="col-lg-2">{student.name}</div>
-        <div className="col-lg-2">{student.campus && student.campus.name}</div>
-        <div className="col-lg-5">{student.email}</div>
-        <div className="col-lg-2">
-          <i onClick={handleDelete} style={{ color: '#A23607' }} className="glyphicon glyphicon-trash"></i>
-          <i style={{ color: '#A23607' }} className="glyphicon glyphicon-eye-open btn"></i>
-          <Link to={`/students/editStudent/${student.id}`}><i onClick={handleEdit} style={{ color: '#A23607' }} className="glyphicon glyphicon-pencil"></i></Link>
+      <div id="student-profile" className="row lead">
+        <div className="col-lg-6">
+          <ul className="list-group">
+            <li style={{ backgroundColor: '#FFFFC6' }} className="list-group-item"><img src="/head.jpg" className="img-responsive img-thumbnail" /></li>
+            <li className="list-group-item">Student ID: #{student && student.id}</li>
+            <li className="list-group-item">Student Name: {student && student.name}</li>
+            <li className="list-group-item">Student Email: {student && student.email}</li>
+          </ul>
+        </div>
+        <div className="col-lg-6">
+          <Link to={`/campuses/campus/${student && student.campus && student.campus.id}`}>
+            <img id="campus-image" className="img-rounded" src={student && student.campus && student.campus.image}></img>
+          </Link>
         </div>
       </div>
     )

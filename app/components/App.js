@@ -5,8 +5,7 @@ import Campuses from './Campuses'
 import Students from './Students'
 import store from '../store'
 import { fetchCampuses, fetchStudents } from '../reducers'
-
-
+import SingleStudent from './SingleStudent'
 
 export default class App extends Component {
   constructor() {
@@ -15,8 +14,8 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    const thunk = fetchCampuses()
-    store.dispatch(thunk)
+    store.dispatch(fetchCampuses())
+    store.dispatch(fetchStudents())
     this.unsubscribe = store.subscribe(() => {
       this.setState(store.getState())
     })
@@ -34,6 +33,7 @@ export default class App extends Component {
           <Switch>
             <Route path="/campuses" component={Campuses} />
             <Route path="/students" component={Students} />
+            <Route path="/student/:id" component={SingleStudent} />
             <Redirect to='/campuses' />
           </Switch>
       </div>

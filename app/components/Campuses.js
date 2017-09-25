@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import store from '../store'
-import { fetchCampuses, deleteCampus, inputError } from '../reducers'
+import { fetchCampuses, deleteCampus, inputError, newEmailEntry, newCampusId, newStudentEntry } from '../reducers'
 import { Route, Link } from 'react-router-dom'
 import SingleCampus from './SingleCampus'
 import CampusForm from './CampusForm'
@@ -12,7 +12,7 @@ export default class Campuses extends Component {
     super()
     this.state = store.getState()
     this.handleDelete = this.handleDelete.bind(this)
-    this.handleClick = this.handleClick.bind(this)
+    this.handleJoin = this.handleJoin.bind(this)
   }
 
   componentDidMount() {
@@ -28,7 +28,11 @@ export default class Campuses extends Component {
     store.dispatch(thunk)
   }
 
-  handleClick() {
+  handleJoin() {
+    store.dispatch(inputError(false))
+    store.dispatch(newEmailEntry(''))
+    store.dispatch(newStudentEntry(''))
+    store.dispatch(newCampusId(0))
     store.dispatch(inputError(false))
   }
 
@@ -38,11 +42,11 @@ export default class Campuses extends Component {
 
   render() {
     const { campuses } = this.state
-    const { handleDelete, handleClick } = this
+    const { handleDelete, handleJoin } = this
     return (
       <div className="row">
         <div className="col-lg-7">
-          <div className="row">
+          <div id="campus-list" className="row">
             {
               campuses.map(function (campus) {
                 return (
@@ -50,7 +54,7 @@ export default class Campuses extends Component {
                     <Link to={`/campuses/campus/${campus.id}`}><img className="img-rounded" src={campus.image} /></Link>
                     <div id="campus-fnc" className="row">
                       <Link to={`/campuses/addStudent/${campus.id}`}>
-                        <div onClick={handleClick} className="col-lg-6 text-center btn btn-default">Join Campus</div>
+                        <div onClick={handleJoin} className="col-lg-6 text-center btn btn-default">Join Campus</div>
                       </Link>
                       <Link to={'/campuses/addCampus'}>
                         <div onClick={() => { handleDelete(campus.id) }} className="col-lg-6 text-center btn btn-default">Delt Campus</div>

@@ -37,7 +37,7 @@ export default class Student extends Component {
         <div className="col-lg-5">{student.email}</div>
         <div className="col-lg-2">
           <i onClick={handleDelete} style={{ color: '#A23607' }} className="glyphicon glyphicon-trash"></i>
-          <i style={{ color: '#A23607' }} className="glyphicon glyphicon-eye-open btn"></i>
+          <Link to={`/student/${student.id}`}><i style={{ color: '#A23607' }} className="glyphicon glyphicon-eye-open btn"></i></Link>
           <Link to={`/students/editStudent/${student.id}`}><i onClick={handleEdit} style={{ color: '#A23607' }} className="glyphicon glyphicon-pencil"></i></Link>
         </div>
       </div>
