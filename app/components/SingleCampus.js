@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import store from '../store'
+import { Link } from 'react-router-dom'
+
 
 export default class SingleCampus extends Component {
 
@@ -29,7 +31,7 @@ export default class SingleCampus extends Component {
           {
             campus && campus.students && campus.students.map( student => {
               return (
-                <li className="lead" key={student.id}>{student.name}</li>
+                <Link to={`/student/${student.id}`}><li className="lead" key={student.id}>{student.name}</li></Link>
               )
             })
           }
