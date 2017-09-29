@@ -31,7 +31,7 @@ export default class SingleCampus extends Component {
           {
             campus && campus.students && campus.students.map( student => {
               return (
-                <Link to={`/student/${student.id}`}><li className="lead" key={student.id}>{student.name}</li></Link>
+                <Link to={`/student/${student.id}` } key={student.id}><li className="lead" >{student.name}</li></Link>
               )
             })
           }

@@ -1,5 +1,5 @@
 body {
-  background-color: #D9C293;
+  background-color: #E4E4E6;
   margin-top: 1em
 }
 
@@ -21,7 +21,6 @@ body {
 .glyphicon-plus {
   margin-top: 0.5em;
   font-size: 3em;
-  margin-left: -1em;
 }
 
 .glyphicon-trash {
@@ -45,7 +44,6 @@ body {
 }
 
 #add-campus {
-  margin-left: -3.5em;
   font-size: 0.8em
 }
 
@@ -60,7 +58,7 @@ body {
 
 #student-list {
   margin-top: 1em;
-  border-bottom: 0.1em solid #4D3D36;
+  border-bottom: 0.1em solid #9FA9A0;
 }
 
 .whole-student-list {
@@ -76,4 +74,13 @@ body {
 #campus-image {
   width: 18.5em;
   height: 18.5em
+}
+
+.panel-default .panel-heading {
+  background-color: #9FA9A0
+}
+
+.nav-tabs li {
+  width: 23em;
+  text-align: center
 }

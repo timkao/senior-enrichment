@@ -39,11 +39,11 @@ export default class Students extends Component {
       <div className="row">
         <div className="col-lg-7 whole-student-list">
           <div id="student-list" className="row lead">
-            <div className="col-lg-1 student-list-item">#</div>
-            <div className="col-lg-2 student-list-item">Name</div>
-            <div className="col-lg-2 student-list-item">Campus</div>
-            <div className="col-lg-5 student-list-item">Email</div>
-            <div className="col-lg-2"></div>
+            <div className="col-lg-1 student-list-item col-md-1 col-sm-1 col-xs-1">#</div>
+            <div className="col-lg-2 student-list-item col-md-2 col-sm-2 col-xs-2">Name</div>
+            <div className="col-lg-2 student-list-item col-md-2 col-sm-2 col-xs-2">Campus</div>
+            <div className="col-lg-5 student-list-item col-md-5 col-sm-5 col-xs-5">Email</div>
+            <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
           </div>
           {
             students && students.map(student => {

@@ -73,6 +73,7 @@ api.put('/student/:studentId', (req, res, next) => {
 
 })
 
+
 api.post('/student', (req, res, next) => {
 	Student.create(req.body)
 	.then( student => {
@@ -83,5 +84,20 @@ api.post('/student', (req, res, next) => {
 	})
 })
 
+api.put('/campus/:campusId', (req, res, next) => {
+	const id = Number(req.params.campusId)
+	Campus.findById(id)
+	.then( campus => {
+		campus.name = req.body.name
+		return campus.save()
+	})
+	.then( updatedCampus => {
+		res.send(updatedCampus)
+	})
+	.catch(() => {
+		res.send('wrong')
+	})
+
+})
 
 module.exports = api

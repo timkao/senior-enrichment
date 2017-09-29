@@ -1,5 +1,7 @@
 const db = require('../index')
 const Sequelize = require('sequelize')
+const toon = require('cartoon-avatar')
+
 
 const Student = db.define('student', {
   name: {
@@ -13,6 +15,13 @@ const Student = db.define('student', {
     type: Sequelize.STRING,
     validate: {
       isEmail: true
+    }
+  }
+}, {
+  getterMethods: {
+    avatar() {
+      const genderDecider = Math.random()
+      return toon.generate_avatar({"gender":  genderDecider < 0.5 ? 'male' : 'female', id: this.id})
     }
   }
 })

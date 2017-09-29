@@ -163,6 +163,19 @@ export const deleteCampus = function (id) {
   }
 }
 
+export const updateCampus = function (id, messageData) {
+  return function (dispatch) {
+    axios.put(`/api/campus/${id}`, messageData)
+      .then(res => res.data)
+      .then(campus => {
+        if (campus === 'wrong') {
+          dispatch(inputError(true))
+        }
+        dispatch(fetchCampuses())
+      })
+  }
+}
+
 export const addStudent = function (messageData) {
   return function (dispatch) {
     axios.post('/api/student', messageData)
