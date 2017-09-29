@@ -2,7 +2,6 @@ const db = require('../index')
 const Sequelize = require('sequelize')
 const toon = require('cartoon-avatar')
 
-
 const Student = db.define('student', {
   name: {
     type: Sequelize.STRING,

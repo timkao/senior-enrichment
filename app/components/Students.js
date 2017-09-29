@@ -22,6 +22,7 @@ export default class Students extends Component {
   }
 
   handleClick(evt) {
+    // reset form
     store.dispatch(newCampusId(0))
     store.dispatch(newEmailEntry(''))
     store.dispatch(newStudentEntry(''))
@@ -56,7 +57,11 @@ export default class Students extends Component {
           }
 
         </div>
-        <div className="col-lg-1"><Link to="/students/addStudent"> <i id="to-add-student" onClick={handleClick} className="glyphicon glyphicon-plus btn"></i> </Link><p id="add-student">Add Student</p>
+        <div className="col-lg-1">
+          <Link to="/students/addStudent">
+            <i id="to-add-student" onClick={handleClick} className="glyphicon glyphicon-plus btn"></i>
+          </Link>
+          <p id="add-student">Add Student</p>
         </div>
 
         <div className="col-lg-4">

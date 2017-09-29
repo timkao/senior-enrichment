@@ -19,6 +19,7 @@ export default class Student extends Component {
   }
 
   handleEdit(evt) {
+    // reset form
     store.dispatch(newEmailEntry(''))
     store.dispatch(newStudentEntry(''))
     store.dispatch(newCampusId(0))

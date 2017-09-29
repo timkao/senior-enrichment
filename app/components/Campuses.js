@@ -31,6 +31,7 @@ export default class Campuses extends Component {
   }
 
   handleJoin() {
+    // reset form value
     store.dispatch(inputError(false))
     store.dispatch(newEmailEntry(''))
     store.dispatch(newStudentEntry(''))
@@ -39,11 +40,13 @@ export default class Campuses extends Component {
   }
 
   handlePlusClick() {
+    // reset form value
     const action = newCampusEntry(name)
     store.dispatch(action)
   }
 
   handleEdit(name) {
+    // reset form value
     const action = newCampusEntry(name)
     store.dispatch(action)
   }

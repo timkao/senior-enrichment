@@ -8,8 +8,8 @@ const Campus = require('../db/models').Campus
 // If you aren't getting to this object, but rather the index.html (something with a joke) your path is wrong.
 	// I know this because we automatically send index.html for all requests that don't make sense in our backend.
 	// Ideally you would have something to handle this, so if you have time try that out!
-api.get('/hello', (req, res) => res.send({hello: 'world'}))
-api.get('/campuses', (req, res) => {
+
+	api.get('/campuses', (req, res) => {
 	Campus.findAll({
 		order: ['id'],
 		include: [Student]
@@ -32,6 +32,22 @@ api.delete('/campus/:id', (req, res, next) => {
 	Campus.destroy({ where: { id } })
 	.then(() => res.status(204).end())
 	.catch(next);
+})
+
+api.put('/campus/:campusId', (req, res, next) => {
+	const id = Number(req.params.campusId)
+	Campus.findById(id)
+	.then( campus => {
+		campus.name = req.body.name
+		return campus.save()
+	})
+	.then( updatedCampus => {
+		res.send(updatedCampus)
+	})
+	.catch(() => {
+		res.send('wrong')
+	})
+
 })
 
 api.get('/students', (req, res) => {
@@ -73,7 +89,6 @@ api.put('/student/:studentId', (req, res, next) => {
 
 })
 
-
 api.post('/student', (req, res, next) => {
 	Student.create(req.body)
 	.then( student => {
@@ -82,22 +97,6 @@ api.post('/student', (req, res, next) => {
 	.catch(() => {
 		res.send('wrong')
 	})
-})
-
-api.put('/campus/:campusId', (req, res, next) => {
-	const id = Number(req.params.campusId)
-	Campus.findById(id)
-	.then( campus => {
-		campus.name = req.body.name
-		return campus.save()
-	})
-	.then( updatedCampus => {
-		res.send(updatedCampus)
-	})
-	.catch(() => {
-		res.send('wrong')
-	})
-
 })
 
 module.exports = api
